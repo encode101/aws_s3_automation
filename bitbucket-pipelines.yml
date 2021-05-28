@@ -36,7 +36,7 @@ pipelines:
         - step:
             name: Deploy to Production
             deployment: Production
-            trigger: auto
+            trigger: automatic
             clone:
               enabled: false
             script:
@@ -47,7 +47,7 @@ pipelines:
                   AWS_SECRET_ACCESS_KEY: "JYNIFxTxokaLnerzu69CaWumkaFgEckc7PtzCR8U"
                   AWS_DEFAULT_REGION: "Asia Pacific (Mumbai) ap-south-1"
                   S3_BUCKET: "aws-s3-automation"
-                  LOCAL_PATH: "static"
+                  LOCAL_PATH: "build/**"
   branches:
     master:
       - parallel:
@@ -71,7 +71,7 @@ pipelines:
       - step:
           name: Deploy to Production
           deployment: Production
-          trigger: manual
+          trigger: automatic
           clone:
             enabled: false
           script:
@@ -82,7 +82,7 @@ pipelines:
                 AWS_SECRET_ACCESS_KEY: "JYNIFxTxokaLnerzu69CaWumkaFgEckc7PtzCR8U"
                 AWS_DEFAULT_REGION: "Asia Pacific (Mumbai) ap-south-1"
                 S3_BUCKET: "aws-s3-automation"
-                LOCAL_PATH: "build"
+                LOCAL_PATH: "static"
             # triggering a distribution invalidation to refresh the CDN caches
             - pipe: atlassian/aws-cloudfront-invalidate:0.1.1
               variables:
