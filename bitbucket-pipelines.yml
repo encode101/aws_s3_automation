@@ -23,8 +23,14 @@ pipelines:
             script:
               - npm install
               # CI=true in default variables for Bitbucket Pipelines https://support.atlassian.com/bitbucket-cloud/docs/variables-in-pipelines/
-              - mkdir build
-              - npm run build
+
+        - step:
+            name: Build
+            script:
+              - npm install --production
+              - REACT_APP_ENVIRONMENT=production npm run build
+            artifacts:
+              - build/**
         - step:
             name: Lint the node package - Mishra
             script:
@@ -47,4 +53,4 @@ pipelines:
                   AWS_SECRET_ACCESS_KEY: "JYNIFxTxokaLnerzu69CaWumkaFgEckc7PtzCR8U"
                   AWS_DEFAULT_REGION: "ap-south-1"
                   S3_BUCKET: "aws-s3-automation"
-                  LOCAL_PATH: "./static"
+                  LOCAL_PATH: "build"
