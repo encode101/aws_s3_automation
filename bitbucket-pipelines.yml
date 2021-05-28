@@ -53,4 +53,4 @@ pipelines:
                   AWS_SECRET_ACCESS_KEY: "JYNIFxTxokaLnerzu69CaWumkaFgEckc7PtzCR8U"
                   AWS_DEFAULT_REGION: "ap-south-1"
                   S3_BUCKET: "aws-s3-automation"
-                  LOCAL_PATH: "build"
+                  LOCAL_PATH: "buildl"
