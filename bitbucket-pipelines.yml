@@ -21,6 +21,7 @@ pipelines:
           - npm install
           - npm run build --production
         artifacts:
+          - mkdir artifacts
           - "**/*"
     - step:
         name: Deploy to Production
