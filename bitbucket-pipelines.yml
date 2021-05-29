@@ -36,5 +36,6 @@ pipelines:
               AWS_ACCESS_KEY_ID: "AKIA4JQIHVKGX2V2XDDU"
               AWS_SECRET_ACCESS_KEY: "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"
               AWS_DEFAULT_REGION: "ap-south-1"
+              ACL: "public-read"
               S3_BUCKET: "aws-s3-automation"
               LOCAL_PATH: "build"
