@@ -22,9 +22,9 @@ pipelines:
           - mkdir build
           - npm run build --production
         artifacts:
-          baseDirectory: build
-            files:
-              - '**/*'
+         baseDirectory: build
+           files:
+            - '**/*'
     - step:
         name: Deploy to Production
         deployment: Production
