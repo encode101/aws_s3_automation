@@ -22,7 +22,9 @@ pipelines:
           - mkdir build
           - npm run build --production
         artifacts:
-          - build/*
+          baseDirectory: build
+            files:
+              - '**/*'
     - step:
         name: Deploy to Production
         deployment: Production
@@ -38,4 +40,4 @@ pipelines:
               AWS_DEFAULT_REGION: "ap-south-1"
               ACL: "public-read"
               S3_BUCKET: "aws-s3-automation"
-              LOCAL_PATH: "build"
+              LOCAL_PATH: "artifacts"
