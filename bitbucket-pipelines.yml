@@ -15,6 +15,13 @@ image: node:10.15.3
 
 pipelines:
   default:
+    - step:
+        name: Build artifact
+        script:
+          - mkdir artifact
+          - echo "Pipelines is awesome!" > artifact/index.html
+        artifacts:
+          - artifact/*
     - parallel:
         - step:
             name: Build and Test - Rahul
@@ -29,8 +36,6 @@ pipelines:
             script:
               - npm install --production
               - npm run build
-            artifacts:
-              - ./build
         - step:
             name: Lint the node package - Mishra
             script:
@@ -53,4 +58,4 @@ pipelines:
                   AWS_SECRET_ACCESS_KEY: "JYNIFxTxokaLnerzu69CaWumkaFgEckc7PtzCR8U"
                   AWS_DEFAULT_REGION: "ap-south-1"
                   S3_BUCKET: "aws-s3-automation"
-                  LOCAL_PATH: "build"
+                  LOCAL_PATH: "artifacts"
