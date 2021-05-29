@@ -18,10 +18,10 @@ pipelines:
     - step:
         name: Build artifact
         script:
-          - mkdir artifact
-          - echo "Pipelines is awesome!" > artifact/index.html
+          - mkdir build
+          - npm run build
         artifacts:
-          - artifact/*
+          - build/*
     - step:
         name: Deploy to Production
         deployment: Production
