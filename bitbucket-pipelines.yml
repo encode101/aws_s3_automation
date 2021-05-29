@@ -33,7 +33,7 @@ pipelines:
           - pipe: atlassian/aws-s3-deploy:0.5.0
             variables:
               AWS_ACCESS_KEY_ID: AKIA4JQIHVKGX2V2XDDU
-              AWS_SECRET_ACCESS_KEY: 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
+              AWS_SECRET_ACCESS_KEY: JYNIFxTxokaLnerzu69CaWumkaFgEckc7PtzCR8UA
               AWS_DEFAULT_REGION: "ap-south-1"
               S3_BUCKET: "aws-s3-automation"
               LOCAL_PATH: "artifacts"
