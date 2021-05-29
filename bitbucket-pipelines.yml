@@ -20,7 +20,7 @@ pipelines:
         script:
           - npm install
           - mkdir build
-          - npm run build
+          - npm run build --production
         artifacts:
           - build/*
     - step:
