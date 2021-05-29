@@ -22,40 +22,18 @@ pipelines:
           - echo "Pipelines is awesome!" > artifact/index.html
         artifacts:
           - artifact/*
-    - parallel:
-        - step:
-            name: Build and Test - Rahul
-            caches:
-              - node
-            script:
-              - npm install
-              # CI=true in default variables for Bitbucket Pipelines https://support.atlassian.com/bitbucket-cloud/docs/variables-in-pipelines/
-
-        - step:
-            name: Build
-            script:
-              - npm install --production
-              - npm run build
-        - step:
-            name: Lint the node package - Mishra
-            script:
-              # Run your linter of choice here
-              - npm install eslint
-              - npx eslint src
-            caches:
-              - node
-        - step:
-            name: Deploy to Production
-            deployment: Production
-            trigger: automatic
-            clone:
-              enabled: false
-            script:
-              # sync your files to S3
-              - pipe: atlassian/aws-s3-deploy:0.4.4
-                variables:
-                  AWS_ACCESS_KEY_ID: "AKIA4JQIHVKGX2V2XDDU"
-                  AWS_SECRET_ACCESS_KEY: "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"
-                  AWS_DEFAULT_REGION: "ap-south-1"
-                  S3_BUCKET: "aws-s3-automation"
-                  LOCAL_PATH: "artifacts"
+    - step:
+        name: Deploy to Production
+        deployment: Production
+        trigger: automatic
+        clone:
+          enabled: false
+        script:
+          # sync your files to S3
+          - pipe: atlassian/aws-s3-deploy:0.4.4
+            variables:
+              AWS_ACCESS_KEY_ID: "AKIA4JQIHVKGX2V2XDDU"
+              AWS_SECRET_ACCESS_KEY: "JYNIFxTxokaLnerzu69CaWumkaFgEckc7PtzCR8U"
+              AWS_DEFAULT_REGION: "ap-south-1"
+              S3_BUCKET: "aws-s3-automation"
+              LOCAL_PATH: "artifacts"
