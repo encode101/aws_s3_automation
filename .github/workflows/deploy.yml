@@ -46,6 +46,7 @@ jobs:
             npm ci
             npm run lint
             npm run build
+            chmod -R 755 dist
             sudo nginx -t
             sudo systemctl restart nginx
             echo "Deployment completed successfully!"
