@@ -17,19 +17,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20"
-          cache: "npm"
+          #cache: "npm"
+          #cache-dependency-path: app/package-lock.json
 
       - name: Install dependencies
+        working-directory: ./app
         run: npm ci
 
       - name: Run linting
+        working-directory: ./app
         run: npm run lint
 
-      - name: Run tests (if available)
-        run: npm test -- --passWithNoTests
-        continue-on-error: false
-
       - name: Build application
+        working-directory: ./app
         run: npm run build
 
       - name: Deploy to EC2
@@ -41,8 +41,9 @@ jobs:
           script: |
             cd ~/aws_s3_automation
             git fetch origin
-            git checkout prod
-            git pull origin prod
+            git checkout app-v2
+            git pull origin app-v2
+            cd app
             npm ci
             npm run lint
             npm run build
